@@ -8,10 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class BookFormActivity extends AppCompatActivity {
+
+    TextView nameView = null;
+    TextView titleView = null;
+    TextView authorsView = null;
+    Spinner statusView = null;
+    ArrayList<String> statuses = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +29,16 @@ public class BookFormActivity extends AppCompatActivity {
 
         final Integer bookId = intent.getIntExtra("position", -1);
 
-        TextView nameView = findViewById(R.id.book_name);
-        TextView titleView = findViewById(R.id.book_title);
-        TextView authorsView = findViewById(R.id.book_authors);
-        Spinner statusView = findViewById(R.id.book_status);
+        nameView = findViewById(R.id.book_name);
+        titleView = findViewById(R.id.book_title);
+        authorsView = findViewById(R.id.book_authors);
+        statusView = findViewById(R.id.book_status);
 
-        ArrayList<String> statuses = new ArrayList<String>();
+        if (bookId > -1) {
+            nameView.setEnabled(false);
+        }
+
+        statuses = new ArrayList<String>();
 
         statuses.add("Não iniciado");
         statuses.add("Em leitura");
@@ -45,19 +56,32 @@ public class BookFormActivity extends AppCompatActivity {
             String authors = authorsView.getText().toString();
             String status = statusView.getSelectedItem().toString();
 
-            System.out.println(name);
-            System.out.println(title);
-            System.out.println(authors);
-            System.out.println(status);
+            Book book = new Book(name, title, authors, status);
+
+            if (bookId > -1) {
+                DAO.updateBook(book);
+            } else {
+                DAO.addBook(book);
+            }
+
+            Toast toast = Toast.makeText(this, "Livro adicionado/atualizado com sucesso", Toast.LENGTH_SHORT);
+
+            toast.show();
+
+            finish();
         });
 
         if (bookId > -1) {
-            System.out.println("Hello world");
             loadBook(bookId);
         }
     }
 
     private void loadBook(int position) {
+        Book book = DAO.books.get(position);
 
+        nameView.setText(book.name);
+        titleView.setText(book.title);
+        authorsView.setText(book.authors);
+        statusView.setSelection(statuses.indexOf(book.status));
     }
 }

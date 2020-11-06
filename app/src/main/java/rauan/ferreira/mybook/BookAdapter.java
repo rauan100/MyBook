@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class BookAdapter extends RecyclerView.Adapter<BookHolder> {
 
@@ -22,24 +25,43 @@ public class BookAdapter extends RecyclerView.Adapter<BookHolder> {
     @Override
     public void onBindViewHolder(@NonNull BookHolder holder, final int position) {
 
-        holder.name.setText("Teste 1");
-        holder.title.setText("Teste 2");
-        holder.authors.setText("Rauan, Teste");
-        holder.status.setText("Não lido");
+        holder.name.setText(DAO.books.get(position).name);
+        holder.title.setText(DAO.books.get(position).title);
+        holder.authors.setText(DAO.books.get(position).authors);
+        holder.status.setText(DAO.books.get(position).status);
         holder.editBook.setOnClickListener((view) -> {
             editBook(position);
+        });
+        holder.deleteBook.setOnClickListener(view -> {
+            deleteBook(position);
         });
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return DAO.books.size();
     }
 
     private void editBook(int position) {
         final Intent book = new Intent(context, BookFormActivity.class);
         book.putExtra("position", position);
         context.startActivity(book);
+    }
+
+    private void deleteBook(int position) {
+        try {
+            Book book = DAO.books.get(position);
+
+            DAO.deleteBook(book);
+
+            Toast toast = Toast.makeText(context, "Livro removido com sucesso", Toast.LENGTH_LONG);
+
+            toast.show();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(context, "Erro ao remover livro", Toast.LENGTH_LONG);
+
+            toast.show();
+        }
     }
 
     public void setContext(FragmentActivity context) {

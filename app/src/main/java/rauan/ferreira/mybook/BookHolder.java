@@ -13,6 +13,7 @@ public class BookHolder extends RecyclerView.ViewHolder {
     public TextView authors;
     public TextView status;
     public ImageButton editBook;
+    public ImageButton deleteBook;
 
     public BookHolder(View itemView) {
         super(itemView);
@@ -21,5 +22,6 @@ public class BookHolder extends RecyclerView.ViewHolder {
         this.authors = itemView.findViewById(R.id.book_authors_list);
         this.status = itemView.findViewById(R.id.book_status_list);
         this.editBook = itemView.findViewById(R.id.editBook);
+        this.deleteBook = itemView.findViewById(R.id.deleteBook);
     }
 }

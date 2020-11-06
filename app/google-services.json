@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "584140857257",
+    "firebase_url": "https://mybook-86932.firebaseio.com",
+    "project_id": "mybook-86932",
+    "storage_bucket": "mybook-86932.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584140857257:android:73ece6a91e46fe633feeb8",
+        "android_client_info": {
+          "package_name": "rauan.ferreira.mybook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584140857257-r272ql61j8jolk2q9101g4ltlt83gpu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8uLFdZHc9yEll3lshNvw5ADtj67Ex9uA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584140857257-r272ql61j8jolk2q9101g4ltlt83gpu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

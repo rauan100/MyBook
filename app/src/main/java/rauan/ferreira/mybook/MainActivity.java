@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent book = new Intent(this, BookFormActivity.class);
 
+        DAO.getBooks();
+
         add.setOnClickListener(view -> {
             startActivityForResult(book, RESULT_CANCELED);
         });
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new BookAdapter();
         mAdapter.setContext(this);
         recyclerView.setAdapter(mAdapter);
+
+        DAO.subscribedAdapter = mAdapter;
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
