@@ -16,6 +16,7 @@ public class BookFormActivity extends AppCompatActivity {
 
     TextView nameView = null;
     TextView titleView = null;
+    TextView quantityView = null;
     TextView authorsView = null;
     Spinner statusView = null;
     ArrayList<String> statuses = null;
@@ -31,6 +32,7 @@ public class BookFormActivity extends AppCompatActivity {
 
         nameView = findViewById(R.id.book_name);
         titleView = findViewById(R.id.book_title);
+        quantityView = findViewById(R.id.book_quantity);
         authorsView = findViewById(R.id.book_authors);
         statusView = findViewById(R.id.book_status);
 
@@ -53,10 +55,11 @@ public class BookFormActivity extends AppCompatActivity {
         btnSave.setOnClickListener(view -> {
             String name = nameView.getText().toString();
             String title = titleView.getText().toString();
+            String quantity = quantityView.getText().toString();
             String authors = authorsView.getText().toString();
             String status = statusView.getSelectedItem().toString();
 
-            Book book = new Book(name, title, authors, status);
+            Book book = new Book(name, title, quantity, authors, status);
 
             if (bookId > -1) {
                 DAO.updateBook(book);
@@ -81,6 +84,7 @@ public class BookFormActivity extends AppCompatActivity {
 
         nameView.setText(book.name);
         titleView.setText(book.title);
+        quantityView.setText(book.quantity);
         authorsView.setText(book.authors);
         statusView.setSelection(statuses.indexOf(book.status));
     }
