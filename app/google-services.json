@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "584140857257-ljnu6bc82vgbqtfutr892f8tqsmq8psb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rauan.ferreira.mybook",
+            "certificate_hash": "381d84a7ccb44534815f8ca25175a08e884400bf"
+          }
+        },
+        {
           "client_id": "584140857257-r272ql61j8jolk2q9101g4ltlt83gpu6.apps.googleusercontent.com",
           "client_type": 3
         }
